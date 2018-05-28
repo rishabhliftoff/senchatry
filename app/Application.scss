@@ -1,1 +1,6 @@
-$base-color: #87BD3E;
+$base-color: rgb(66,110,181);
+
+
+body.x-ios.x-webview.x-portrait {
+  margin-top: 20px;
+}

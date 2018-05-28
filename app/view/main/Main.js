@@ -1,47 +1,92 @@
 Ext.define('senchatry.view.main.Main', {
-    extend: 'Ext.tab.Panel',
-
-    controller: 'main',
-
-    cls: 'main',
+    extend: 'Ext.navigation.View',
 
     requires: [
         'Ext.Button',
-        'Ext.field.Text'
+        'Ext.list.Tree',
+        'Ext.navigation.View'
     ],
 
-    viewModel: {
-      data: {
-        userName: ''
-      }
-    },
+    controller: 'main',
+    navigationBar: false,
+    userCls: 'main-container',
 
-    items: [{
-        title: 'Home',
-        cls: 'home',
-        html: '<h1 class="banner">Hello World!</h1>',
-        items: [
-          {
-            xtype: 'textfield',
-            label: 'User name',
-            bind: '{userName}',
+    // platformConfig: {
+    //     phone: {
+    //         controller: 'phone-main'
+    //     }
+    // },
+
+    items: [
+      {
+        xtype: 'maintoolbar',
+        docked: 'top',
+        userCls: 'main-toolbar',
+        shadow: true
+      },
+      {
+        xtype: 'container',
+        docked: 'left',
+        userCls: 'main-nav-container x-shadow',
+        reference: 'navigation',
+        layout: 'fit',
+        items: [{
+            xtype: 'treelist',
+            reference: 'navigationTree',
+            scrollable: true,
+            ui: 'nav',
+            store: 'NavigationTree',
+            expanderFirst: true,
+            expanderOnly: true,
             listeners: {
-              action: 'onGo'
+                itemclick: 'onNavigationItemClick',
+                selectionchange: 'onNavigationTreeSelectionChange'
             }
-          },
-          {
-            xtype: 'button',
-            handler: 'onGo',
-            bind: {
-              disabled: '{!userName}',
-              text: '{userName ? "Save: " + userName : "Save"}'
-            }
-          }
-        ]
-    }, {
-        title: 'Notifications',
-        xtype: 'notifications'
-    }, {
-        title: 'Settings'
-    }]
+        }]
+      }
+    ]
 });
+
+
+// Ext.define('senchatry.view.main.Main', {
+//     extend: 'Ext.tab.Panel',
+//     fullscreen: true,
+//     tabBarPosition: 'left',
+//
+//     cls: 'main',
+//
+//     items: [
+//       {
+//         title: 'Home',
+//         iconCls: 'home',
+//         cls: 'no-flex',
+//         xtype: 'panel',
+//         flex: 0,
+//         html: '<h1 class="banner">Home</h1>',
+//       },
+//       {
+//         title: 'Schedule',
+//         xtype: 'panel',
+//         cls: 'no-flex',
+//         html: '<h1 class="banner">Schedule</h1>',
+//       },
+//       {
+//         title: 'Inventory',
+//         xtype: 'panel',
+//         cls: 'no-flex',
+//         html: '<h1 class="banner">Inventory</h1>',
+//       },
+//       {
+//         title: 'Route Map',
+//         xtype: 'panel',
+//         cls: 'no-flex',
+//         html: '<h1 class="banner">Route Map</h1>',
+//       },
+//       {
+//         title: 'Time Card',
+//         xtype: 'panel',
+//         cls: 'no-flex',
+//         html: '<h1 class="banner">Time Card</h1>',
+//       }
+//     ]
+// });
