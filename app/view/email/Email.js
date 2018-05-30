@@ -1,6 +1,12 @@
 Ext.define('senchatry.view.email.Email', {
-    extend: 'Ext.Component',
+    extend: 'Ext.Img',
     xtype: 'email',
+
+    userCls: 'main-user-image ',
+    imageCls: 'circular small-image',
+    alt: 'Current image',
+    src: '<shared>images/image.png',
+    mode: 'background',
 
     // controller: 'dashboard',
     // viewModel: {
@@ -13,6 +19,4 @@ Ext.define('senchatry.view.email.Email', {
     defaults: {
         shadow: true
     },
-
-    html: '<h1 class="banner">email</h1>',
 });
